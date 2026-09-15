@@ -8,6 +8,7 @@ A reusable multi-agent team for orchestrating software work through the GitHub C
 - **Planner** - researches and produces implementation plans.
 - **Coder** - writes code and prepares runnable app support.
 - **Designer** - handles UI/UX, accessibility, and visual design.
+- **Reviewer** - independently checks the finished work for correctness, security, accessibility, and edge cases.
 
 Agent definitions live in [`.github/agents/`](.github/agents/). See [`docs/agent-team.md`](docs/agent-team.md) for details on how they work together.
 
