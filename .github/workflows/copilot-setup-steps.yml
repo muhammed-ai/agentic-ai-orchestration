@@ -1,0 +1,33 @@
+# Environment setup for the GitHub Copilot coding agent.
+# The job MUST be named `copilot-setup-steps` for Copilot to pick it up.
+# Docs: https://docs.github.com/en/copilot/customizing-copilot/customizing-the-development-environment-for-copilot-coding-agent
+name: Copilot setup steps
+
+on:
+  # Lets you test the setup steps manually.
+  workflow_dispatch:
+  # Validate the setup steps when this file changes.
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # This repo is documentation and Markdown agent definitions today.
+      # Add project-specific dependency installation and build steps here as
+      # the repo grows, so the coding agent starts from a ready environment.

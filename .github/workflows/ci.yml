@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check agent definitions have required front matter
+        shell: bash
+        run: |
+          set -euo pipefail
+          status=0
+          for file in .github/agents/*.agent.md; do
+            echo "Checking $file"
+            for key in name description model tools; do
+              if ! grep -qE "^${key}:" "$file"; then
+                echo "::error file=${file}::missing front matter key '${key}'"
+                status=1
+              fi
+            done
+          done
+          exit $status
+
+      - name: Warn on unset model placeholders
+        shell: bash
+        run: |
+          if grep -rn "TODO-set-your-model" .github/agents; then
+            echo "::warning::Some agents still use the TODO-set-your-model placeholder."
+          fi
