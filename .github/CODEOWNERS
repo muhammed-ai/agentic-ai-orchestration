@@ -1,0 +1,17 @@
+# Code owners for this repository.
+# Each line maps a path pattern to the owners requested for review.
+# Replace the placeholder owner with your GitHub username or team.
+
+# Default owner for everything in the repo.
+*                       @TODO-set-your-github-owner
+
+# Agent definitions.
+/.github/agents/        @TODO-set-your-github-owner
+
+# Copilot configuration.
+/.github/copilot-instructions.md   @TODO-set-your-github-owner
+/.github/instructions/  @TODO-set-your-github-owner
+/.github/prompts/       @TODO-set-your-github-owner
+
+# Documentation.
+/docs/                  @TODO-set-your-github-owner
